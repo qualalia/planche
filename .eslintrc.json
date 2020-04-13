@@ -1,7 +1,24 @@
 {
-  "root": true,
-  "extends": ["fullstack", "prettier", "prettier/react"],
-  "rules": {
-    "semi": 0
-  }
+    "root": true,
+    "env": {
+	"browser": true,
+	"node": true,
+	"amd": true,
+	"mocha": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+	"ecmaFeatures": {
+	    "jsx": true
+	},
+	"sourceType": "module"
+    },
+    "rules": {
+	"semi": 0,
+	"comma-dangle": 0,
+	"no-undef": "warn",
+	"no-console": "warn"
+    }
 }
