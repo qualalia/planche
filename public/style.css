@@ -2,27 +2,94 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
+/* ----------- */
+/*   NAV BAR   */
+/* ----------- */
 nav {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    margin: 1em;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #F69400;
+    color: #FAFAFA;
 }
 
-#guest-links {
+#title {
+    font-size: 5rem;
+}
+
+#sign-up-or-in {
     display: flex;
     flex-direction: column;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+.top-row-msg {
+    padding: 0.5rem;
+}
+
+.top-row-msg-hidden {
+    padding: 0.5rem;
+    visibility: hidden;
+}
+
+#auth-form {
+    display: flex;
+    margin-bottom: 0.7rem;
+    justify-content: flex-end;
+}
+
+input {
+    background-color: #fffdd0;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+}
+
+#auth-form-btn {
+    background-color: #fffdd0;
+    color: #f69400;
+    font-weight: bold;
+    border: none;
+    padding: 0.5rem;
+    width: 5rem;
+}
+
+.bottom-row-login {
+    display: flex;
+    justify-content: space-around;
+}
+
+.google-auth-msg {
+    padding: 0.5rem;
+    width: 15rem;
+}
+
+.navlink {
+    color: #fafafa;   
+}
+
+.toggle-msg-and-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-content: flex-end;
+    align-content: center;
+    height: 4rem;
+    width: 13rem;
+}
+
+.have-or-need-account-msg {
+    max-width: 7rem;
+    margin-right: 1rem;
+    text-align: right;
+}
+
+.toggle-signup-signin-btn {
+    background-color: #fffdd0;
+    color: #f69400;
+    font-weight: bold;
+    border: none;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    width: 5rem;
 }

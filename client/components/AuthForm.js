@@ -1,36 +1,31 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
+import { Form, Button } from 'semantic-ui-react';
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const { name, displayName, handleSubmit, error } = props;
+  const { name, submitType, handleSubmit, error } = props;
 
   return (
-    <div>
-      <form id="auth-form" onSubmit={handleSubmit} name={name}>
-        <div id="email-label">
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div id="password-label">
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
+    <form id="auth-form" onSubmit={handleSubmit} name={name}>
+      <div className="form-field">
+        <input name="email" type="text" placeholder="Email" />
+      </div>
+      <div className="form-field">
+        <input name="password" type="password" placeholder="Password" />
+      </div>
+      <div id="submit-or-toggle">
+        <button id="auth-form-btn" type="submit">
+          {submitType}
+        </button>
+      </div>
+      {error && error.response && <div> {error.response.data} </div>}
+    </form>
   );
 };
 
@@ -43,8 +38,8 @@ const AuthForm = props => {
  */
 const mapLogIn = state => {
   return {
-    name: 'login',
-    displayName: 'Log In',
+    name: 'signin',
+    submitType: 'Sign in',
     error: state.user.error,
   };
 };
@@ -52,7 +47,7 @@ const mapLogIn = state => {
 const mapSignUp = state => {
   return {
     name: 'signup',
-    displayName: 'Sign Up',
+    submitType: 'Sign up',
     error: state.user.error,
   };
 };
@@ -77,7 +72,24 @@ export const SignUp = connect(mapSignUp, mapDispatch)(AuthForm);
  */
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
+  submitType: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object,
 };
+
+/*
+
+   <Form id="auth-form" onSubmit={handleSubmit} name={name}>
+   <Form.Group inline>
+   <Form.Input fluid label="Email" placeholder="Email" />
+   <Form.Input fluid label="Password" placeholder="Password" />
+   </Form.Group>
+   <Button inverted color="orange">
+   {submitType}
+   </Button>
+   {error && error.response && <div> {error.response.data} </div>}
+   </Form>
+   <NavLink to="/auth/google">{submitType} with Google</NavLink>
+   </div>
+
+ */

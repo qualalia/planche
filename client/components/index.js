@@ -6,4 +6,4 @@
 export { default as Navbar } from './NavBar.js'
 export { default as UserHome } from './UserHome.js'
 export { LogIn, SignUp } from './AuthForm.js'
-export { default as LoginOrSignup } from './LoginOrSignup.js'
+export { LoginOrSignup, LogInOrSignUpBtn } from './LoginOrSignup.js'

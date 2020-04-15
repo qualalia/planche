@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  withRouter,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {
-  LogIn,
-  SignUp,
-  UserHome,
-  LoginOrSignup,
-} from './components';
+import { LogIn, SignUp, UserHome, LoginOrSignup } from './components';
 import { me } from './store';
 
 /**
@@ -26,28 +17,15 @@ class Routes extends Component {
     const { isLoggedIn, history } = this.props;
     return (
       <Switch>
-        <Route exact path="/login" component={LogIn} />
-        <Route exact path="/signup" component={SignUp} />
-        {isLoggedIn ? (
+        {isLoggedIn && (
           <Switch>
-            <Route
-              exact
-              path="/profile"
-              render={() => <UserHome />}
-            />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route
-              path="/join"
-              render={() => <LoginOrSignup />}
-            />
+            <Route exact path="/profile" render={() => <UserHome />} />
           </Switch>
         )}
         <Route
           exact
           path="/"
-          render={() => <h1>Welcome to the homepage!</h1>}
+          render={() => <h2>home page: render "some" upcoming classes</h2>}
         />
         <Route path="*" render={() => <h2>Not found</h2>} />
       </Switch>
@@ -75,9 +53,7 @@ const mapDispatch = dispatch => {
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked when the url changes
-export default withRouter(
-  connect(mapState, mapDispatch)(Routes)
-);
+export default withRouter(connect(mapState, mapDispatch)(Routes));
 
 /**
  * PROP TYPES
