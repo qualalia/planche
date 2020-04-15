@@ -10,9 +10,16 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1em;
+}
+
+#guest-links {
+    display: flex;
+    flex-direction: column;
 }
 
 form div {
