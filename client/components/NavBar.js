@@ -29,20 +29,20 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
               <LogIn />
               <div className="bottom-row-login">
                 <div className="google-auth-msg">
-                  <NavLink className="navlink" to="/auth/google">
+                  <div
+                    className="bottom-row-msg"
+                    onClick={() => history.push('/auth/google')}
+                  >
                     {'Or sign in with Google.'}
-                  </NavLink>
+                  </div>
                 </div>
                 <div className="toggle-msg-and-btn">
-                  <div className="have-or-need-account-msg">
-                    {'Need an account? '}
-                  </div>
-                  <button
-                    className="toggle-signup-signin-btn"
+                  <div
+                    className="bottom-row-msg"
                     onClick={() => toggleIsGuest(!isGuest)}
                   >
-                    {'Sign Up'}
-                  </button>
+                    {'Need an account?'}
+                  </div>
                 </div>
               </div>
             </React.Fragment>
@@ -54,20 +54,20 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
               <SignUp />
               <div className="bottom-row-login">
                 <div className="google-auth-msg">
-                  <NavLink className="navlink" to="/auth/google">
+                  <div
+                    className="bottom-row-msg"
+                    onClick={() => history.push('/auth/google')}
+                  >
                     {'Or sign up with Google.'}
-                  </NavLink>
+                  </div>
                 </div>
                 <div className="toggle-msg-and-btn">
-                  <div className="have-or-need-account-msg">
-                    {'Already have an account? '}
-                  </div>
-                  <button
-                    className="toggle-signup-signin-btn"
+                  <div
+                    className="bottom-row-msg"
                     onClick={() => toggleIsGuest(!isGuest)}
                   >
-                    {'Sign In'}
-                  </button>
+                    {'Already have an account?'}
+                  </div>
                 </div>
               </div>
             </React.Fragment>
@@ -105,3 +105,12 @@ Navbar.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   history: PropTypes.object,
 };
+
+/*
+<button
+className="toggle-signup-signin-btn"
+onClick={() => toggleIsGuest(!isGuest)}
+>
+{'Sign up'}
+</button>
+*/
