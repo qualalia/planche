@@ -36,13 +36,11 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
                     {'Or sign in with Google.'}
                   </div>
                 </div>
-                <div className="toggle-msg-and-btn">
-                  <div
-                    className="bottom-row-msg"
-                    onClick={() => toggleIsGuest(!isGuest)}
-                  >
-                    {'Need an account?'}
-                  </div>
+                <div
+                  className="bottom-row-msg"
+                  onClick={() => toggleIsGuest(!isGuest)}
+                >
+                  {'Need an account?'}
                 </div>
               </div>
             </React.Fragment>
@@ -61,13 +59,11 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
                     {'Or sign up with Google.'}
                   </div>
                 </div>
-                <div className="toggle-msg-and-btn">
-                  <div
-                    className="bottom-row-msg"
-                    onClick={() => toggleIsGuest(!isGuest)}
-                  >
-                    {'Already have an account?'}
-                  </div>
+                <div
+                  className="bottom-row-msg"
+                  onClick={() => toggleIsGuest(!isGuest)}
+                >
+                  {'Already have an account?'}
                 </div>
               </div>
             </React.Fragment>
