@@ -1,12 +1,13 @@
 {
     "root": true,
     "env": {
+	"es6": true,
 	"browser": true,
 	"node": true,
 	"amd": true,
 	"mocha": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+    "extends": ["fullstack", "plugin:prettier/recommended", "plugin:react/recommended"],
     "plugins": ["react", "prettier"],
     "parser": "babel-eslint",
     "parserOptions": {
