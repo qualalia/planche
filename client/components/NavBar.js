@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import { LogIn, SignUp } from '../components';
 import { logout } from '../store';
 
 const Navbar = ({ isLoggedIn, history, handleClick }) => {
   const [isGuest, toggleIsGuest] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   return (
     <nav id="navbar">
       <div id="title" onClick={() => history.push('/')}>
@@ -14,28 +15,24 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
       </div>
       {isLoggedIn ? (
         <div id="logged-in-links">
-          <div>
-            <NavLink to="/profile">Account</NavLink>
+          <div className="logged-in" onClick={() => history.push('/profile')}>
+            Profile
           </div>
-          <div onClick={handleClick}>Logout</div>
+          <div className="logged-in" onClick={handleClick}>
+            Logout
+          </div>
         </div>
       ) : (
         <div id="sign-up-or-in">
           {!isGuest ? (
             <React.Fragment>
               <div className="top-row-msg-hidden">
-                To sign up, all we need is an email and password.
+                {'To sign up, all we need is an email and password.'}
               </div>
               <LogIn />
               <div className="bottom-row-login">
-                <div className="google-auth-msg">
-                  <div
-                    className="bottom-row-msg"
-                    onClick={() => history.push('/auth/google')}
-                  >
-                    {'Or sign in with Google.'}
-                  </div>
-                </div>
+                {/* NavLink to `/auth/google` didn't work */}
+                <a href="/auth/google">{'Or sign in with Google.'}</a>
                 <div
                   className="bottom-row-msg"
                   onClick={() => toggleIsGuest(!isGuest)}
@@ -47,18 +44,11 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
           ) : (
             <React.Fragment>
               <div className="top-row-msg">
-                To sign up, all we need is an email and password.
+                {'To sign up, all we need is an email and password.'}
               </div>
               <SignUp />
               <div className="bottom-row-login">
-                <div className="google-auth-msg">
-                  <div
-                    className="bottom-row-msg"
-                    onClick={() => history.push('/auth/google')}
-                  >
-                    {'Or sign up with Google.'}
-                  </div>
-                </div>
+                <a href="/auth/google">{'Or sign up with Google.'}</a>
                 <div
                   className="bottom-row-msg"
                   onClick={() => toggleIsGuest(!isGuest)}
@@ -101,12 +91,3 @@ Navbar.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   history: PropTypes.object,
 };
-
-/*
-<button
-className="toggle-signup-signin-btn"
-onClick={() => toggleIsGuest(!isGuest)}
->
-{'Sign up'}
-</button>
-*/

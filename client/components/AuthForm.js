@@ -10,22 +10,24 @@ import { Form, Button } from 'semantic-ui-react';
  */
 const AuthForm = props => {
   const { name, submitType, handleSubmit, error } = props;
-
   return (
-    <form id="auth-form" onSubmit={handleSubmit} name={name}>
-      <div className="form-field">
-        <input name="email" type="text" placeholder="Email" />
-      </div>
-      <div className="form-field">
-        <input name="password" type="password" placeholder="Password" />
-      </div>
-      <div id="submit-or-toggle">
-        <button id="auth-form-btn" type="submit">
-          {submitType}
-        </button>
-      </div>
-      {error && error.response && <div> {error.response.data} </div>}
-    </form>
+    <div id="auth-form-container">
+      <form id="auth-form" onSubmit={handleSubmit} name={name}>
+        <div className="form-field">
+          <input name="email" type="text" placeholder="Email" />
+        </div>
+        <div className="form-field">
+          <input name="password" type="password" placeholder="Password" />
+        </div>
+        <div id="submit-or-toggle">
+          <button id="auth-form-btn" type="submit">
+            {submitType}
+          </button>
+        </div>
+      </form>
+      {error &&
+        error.response && <div id="auth-error">{error.response.data}</div>}
+    </div>
   );
 };
 
