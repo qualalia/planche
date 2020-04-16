@@ -1,5 +1,5 @@
-# Planche
+# Salto
 
-_A platform for circus schools to schedule their classes, workshops, and troupes._
+_Your one-stop shop for your virtual circus needs._
 
-Stay tuned for more.
+Currently in development. Stay tuned for build and site info.
