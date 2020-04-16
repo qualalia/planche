@@ -20,12 +20,18 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             <Route exact path="/profile" render={() => <UserHome />} />
+            <Route
+              path="/"
+              render={() => <h2>{'same home page, but logged in'}</h2>}
+            />
           </Switch>
         )}
         <Route
           exact
           path="/"
-          render={() => <h2>home page: render "some" upcoming classes</h2>}
+          render={() => (
+            <h2>{'guest home page: render "some" upcoming classes'}</h2>
+          )}
         />
         <Route path="*" render={() => <h2>Not found</h2>} />
       </Switch>
