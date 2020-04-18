@@ -11,9 +11,10 @@ async function seed() {
     User.create({ email: "murphy@email.com", password: "123" }),
     User.create({ email: "cody@email.com", password: "123" }),
     User.create({
-      email: "master-trainer@email.com",
+      email: "master-coach@email.com",
       password: "123",
       userType: 1,
+      displayName: "Master Coach",
       bio: "the very best like no one ever was",
     }),
     User.create({
@@ -21,7 +22,7 @@ async function seed() {
       password: "123",
       userType: 1,
       bio: "will encourage you to brag about burns",
-      displayName: "Jenny Aerialst",
+      displayName: "Jenny Aerialist",
     }),
   ]);
   console.log(`seeded ${users.length} users`);
@@ -37,31 +38,37 @@ async function seed() {
   console.log("s: ", students.length);
 
   const aerialista = coaches.find(
-    coach => coach.displayName === "Jenny Aerialst"
+    coach => coach.displayName === "Jenny Aerialist"
   );
   const masterTrainer = coaches.find(
-    coach => coach.displayName === "master-trainer"
+    coach => coach.displayName === "Master Coach"
   );
 
   const circusClasses = await Promise.all([
     CircusClass.create({
       title: "Advanced Beginning Silks",
       description:
-        "Great for those who can both invert comfortably in the air and do not ask to do a double star every class.",
+        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
       cap: 8,
       instructorId: aerialista.id,
+      startTime: new Date("April 18, 2020 9:00:00"),
+      endTime: new Date("April 18, 2020 10:00:00"),
     }),
     CircusClass.create({
       title: "Upper Back Flexibility",
-      description: "Because quarantine means we all have hunchbacks now.",
+      description: "Get rid of that quarantine hunchback.",
       cap: 10,
       instructorId: masterTrainer.id,
+      startTime: new Date("April 18, 2020 14:00:00"),
+      endTime: new Date("April 18, 2020 14:45:00"),
     }),
     CircusClass.create({
       title: "Handstands",
       description: "for a better profile pic",
       cap: 7,
       instructorId: masterTrainer.id,
+      startTime: new Date("April 18, 2020 18:00:00"),
+      endTime: new Date("April 18, 2020 19:15:00"),
     }),
   ]);
   console.log(`seeded ${circusClasses.length} classes`);
