@@ -1,17 +1,32 @@
-const router = require('express').Router();
-const { User } = require('../db/models');
+const router = require("express").Router();
+const { User } = require("../db/models");
+const { requireLoggedIn, requireValidUser } = require("./middleware.js");
 module.exports = router;
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email', 'displayName', 'userType', 'bio'],
+      attributes: ["id", "email", "displayName", "userType", "bio"],
     });
     res.json(users);
   } catch (err) {
     next(err);
   }
 });
+
+router.get(
+  "/:id",
+  requireLoggedIn,
+  requireValidUser,
+  async (req, res, next) => {
+    try {
+      /* if (req.user.id !== parseInt(req.params.id)) res.sendStatus(401);
+       * else { */
+      const user = await User.findByPk(req.params.id);
+      res.json(user);
+      //      }
+    } catch (err) {
+      next(err);
+    }
+  }
+);
