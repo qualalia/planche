@@ -1,13 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
-import { fetchSingleClass } from "../store";
 import { Item, Label } from "semantic-ui-react";
 import {
   dayAndDateOptions,
   hourAndMinuteOptions,
 } from "../script/CONSTANTS.js";
 
-const SingleClass = props => {
+const SingleLesson = props => {
   const {
     title,
     description,
@@ -15,7 +13,7 @@ const SingleClass = props => {
     startTime,
     endTime,
     instructor,
-  } = props.theClass;
+  } = props.lesson;
   const instructorName = instructor.displayName;
   return (
     <Item className="lesson-card">
@@ -51,7 +49,7 @@ const SingleClass = props => {
   );
 };
 
-export default SingleClass;
+export default SingleLesson;
 
 /*
      <div className="single-class">
