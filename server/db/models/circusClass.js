@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const db = require("../db");
 
@@ -25,14 +24,35 @@ const CircusClass = db.define("circusClass", {
   },
   startTime: {
     type: Sequelize.DATE,
-    allowNull: false,
-    defaultValue: Date.now(),
   },
   endTime: {
     type: Sequelize.DATE,
-    allowNull: false,
-    defaultValue: Date.now(),
+  },
+  day: {
+    type: Sequelize.INTEGER,
+  },
+  company: {
+    type: Sequelize.STRING,
+    allowNull: true,
   },
 });
 
 module.exports = CircusClass;
+
+const setDay = circusClass => {
+  if (!circusClass.day) circusClass.day = circusClass.startTime.getDay();
+};
+
+const setStartAndEndTimes = circusClass => {
+  if (!circusClass.startTime && !circusClass.endTime) {
+    circusClass.startTime = new Date();
+    circusClass.endTime = new Date();
+    circusClass.day = circusClass.startTime.getDay();
+  } else if (!circusClass.endTime) {
+    circusClass.endTime = circusClass.startTime;
+  }
+};
+
+CircusClass.beforeCreate(setStartAndEndTimes);
+CircusClass.beforeCreate(setDay);
+CircusClass.beforeUpdate(setStartAndEndTimes);
