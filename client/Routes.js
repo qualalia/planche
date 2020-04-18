@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { LogIn, SignUp, UserHome, LoginOrSignup } from './components';
-import { me } from './store';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
+import { LogIn, SignUp, UserHome, Homepage } from "./components";
+import { me } from "./store";
 
 /**
  * COMPONENT
@@ -20,19 +20,10 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             <Route exact path="/profile" render={() => <UserHome />} />
-            <Route
-              path="/"
-              render={() => <h2>{'same home page, but logged in'}</h2>}
-            />
+            <Route path="/" render={() => <Homepage />} />
           </Switch>
         )}
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <h2>{'guest home page: render "some" upcoming classes'}</h2>
-          )}
-        />
+        <Route exact path="/" render={() => <Homepage />} />
         <Route path="*" render={() => <h2>Not found</h2>} />
       </Switch>
     );
