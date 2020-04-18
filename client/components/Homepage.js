@@ -4,7 +4,7 @@ import { daysOfTheWeek } from "../script/CONSTANTS.js";
 
 const Homepage = () => {
   return (
-    <div>
+    <div id="homepage">
       <div id="filters">
         <div id="filters-label">Filter by:</div>
         <div className="filter-container">
