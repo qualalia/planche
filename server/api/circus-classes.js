@@ -1,16 +1,22 @@
 const router = require("express").Router();
-const { CircusClass, User } = require("../db/models");
+const { Lesson, CircusClass, User } = require("../db/models");
 const { Op } = require("sequelize");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
     const allClasses = await CircusClass.findAll({
-      include: {
-        model: User,
-        as: "instructor",
-        attributes: ["id", "displayName", "userType", "bio"],
-      },
+      include: [
+        {
+          model: User,
+          as: "instructor",
+          attributes: ["id", "displayName", "userType", "bio"],
+        },
+        {
+          model: User,
+          attributes: ["id", "email", "displayName", "userType"],
+        },
+      ],
     });
     res.json(allClasses);
   } catch (err) {
@@ -31,7 +37,7 @@ router.get("/:id", async (req, res, next) => {
         include: [
           {
             model: User,
-            attributes: ["id", "email", "displayName", "userType", "bio"],
+            attributes: ["id", "email", "displayName", "userType"],
           },
         ],
       });

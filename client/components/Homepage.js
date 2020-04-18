@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { fetchClasses } from "../store";
-import { AllClasses, DropdownList } from "../components";
+import React from "react";
+import { AllLessons, DropdownList } from "../components";
 import { daysOfTheWeek } from "../script/CONSTANTS.js";
 
 const Homepage = () => {
@@ -17,7 +16,7 @@ const Homepage = () => {
           />
         </div>
       </div>
-      <AllClasses />
+      <AllLessons />
     </div>
   );
 };
