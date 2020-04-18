@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { fetchLessons } from "../store";
 import { SingleLesson } from "../components";
-import { Grid } from "semantic-ui-react";
+import { Grid, Label, Header } from "semantic-ui-react";
 
 const AllLessons = props => {
   const allLessons = useSelector(state => state.allLessons) || [];
@@ -21,11 +21,26 @@ const AllLessons = props => {
       {allLessons.error && <h2>Error: {allLessons.error}</h2>}
       {loading && <h2>Loading...</h2>}
       {allLessons.length && (
-        <Grid>
+        <Grid columns="equal">
+          <Grid.Row className="lesson-list-header">
+            <Grid.Column width={3}>
+              <Header as="h3" textAlign="left">
+                Time
+              </Header>
+            </Grid.Column>
+            <Grid.Column width={10}>
+              <Header as="h3" textAlign="left">
+                Class
+              </Header>
+            </Grid.Column>
+            <Grid.Column width={2}>
+              <Header as="h3" textAlign="left">
+                Instructor Studio
+              </Header>
+            </Grid.Column>
+          </Grid.Row>
           {allLessons.map(lesson => (
-            <Grid.Row>
-              <SingleLesson key={`lesson${lesson.id}`} lesson={lesson} />
-            </Grid.Row>
+            <SingleLesson key={`lesson${lesson.id}`} lesson={lesson} />
           ))}
         </Grid>
       )}
