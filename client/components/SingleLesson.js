@@ -25,7 +25,7 @@ const SingleLesson = props => {
             <Item>
               <Item.Content verticalAlign="middle">
                 <Item.Header>
-                  <Header as="h3" textAlign="center">
+                  <Header inverted as="h3" textAlign="center">
                     {new Date(startTime).toLocaleString(
                       undefined,
                       hourAndMinuteOptions
@@ -42,7 +42,7 @@ const SingleLesson = props => {
             <Item>
               <Item.Content verticalAlign="middle">
                 <Item.Header>
-                  <Header as="h3" textAlign="center">
+                  <Header inverted as="h3" textAlign="center">
                     {(new Date(endTime) - new Date(startTime)) / (1000 * 60)}
                     {" mins"}
                   </Header>
@@ -61,7 +61,7 @@ const SingleLesson = props => {
           <Item>
             <Item.Content verticalAlign="middle">
               <Item.Header>
-                <Header textAlign="center" as="h1">
+                <Header inverted textAlign="center" as="h1">
                   {title}
                 </Header>
               </Item.Header>
@@ -70,7 +70,7 @@ const SingleLesson = props => {
           <Item>
             <Item.Content>
               <Item.Header>
-                <Header textAlign="left" as="h3">
+                <Header inverted textAlign="left" as="h3">
                   {description}
                 </Header>
               </Item.Header>
@@ -83,7 +83,7 @@ const SingleLesson = props => {
           <Item>
             <Item.Content verticalAlign="middle">
               <Item.Header>
-                <Header textAlign="left" as="h3">
+                <Header inverted textAlign="left" as="h3">
                   {instructorName}
                 </Header>
               </Item.Header>
@@ -92,7 +92,7 @@ const SingleLesson = props => {
           <Item>
             <Item.Content verticalAlign="middle">
               <Item.Header>
-                <Header textAlign="left" as="h3">
+                <Header inverted textAlign="left" as="h3">
                   {studio}
                 </Header>
               </Item.Header>
@@ -105,24 +105,3 @@ const SingleLesson = props => {
 };
 
 export default SingleLesson;
-
-/*
-   <div className="single-class">
-   <div className="class-title">{title}</div>
-   <div className="class-description">{description}</div>
-   <div className="class-instructor">{instructorName}</div>
-   <div className="class-associated-studio">"studio, if any"</div>
-   <div className
-   <div className="class-start-time">
-   {new Date(startTime).toLocaleDateString(undefined, {
-   weekday: "long",
-   month: "long",
-   day: "numeric",
-   timeZoneName: "short",
-   hour: "numeric",
-   minute: "numeric",
-   })}
-   </div>
-   <div className="class-end-time">{endTime}</div>
-   </div>
- */
