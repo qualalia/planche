@@ -2,62 +2,60 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect, useSelector } from "react-redux";
 import { withRouter, NavLink } from "react-router-dom";
-import { LogIn, SignUp } from "../components";
+import { LogIn, SignUp, LoginOrSignup } from "../components";
 import { logout } from "../store";
+import { Popup, Button } from "semantic-ui-react";
+
+const popupStyle = {
+  display: "flex",
+  flexDirection: "column",
+  backgroundColor: "rgba(255,255,255,0.4)",
+  boxShadow: "0px 2px 2px 2px rgba(248, 181, 152, 0.6)",
+};
 
 const Navbar = ({ isLoggedIn, history, handleClick }) => {
-  const [isGuest, toggleIsGuest] = useState(false);
+  const [isOpen, toggleIsOpen] = useState(false);
+  const handlePopup = () => {
+    toggleIsOpen(!isOpen);
+  };
   return (
     <nav id="navbar">
       <div id="title" onClick={() => history.push("/")}>
-        Salto
+        Salto!
       </div>
       {isLoggedIn ? (
         <div id="logged-in-links">
-          <div className="logged-in" onClick={() => history.push("/profile")}>
-            Profile
-          </div>
-          <div className="logged-in" onClick={handleClick}>
-            Logout
-          </div>
+          <Button
+            color="purple"
+            className="less-opacity"
+            content="Profile"
+            onClick={() => history.push("/profile")}
+          />
+          <Button
+            color="purple"
+            className="less-opacity"
+            content="Log Out"
+            onClick={handleClick}
+          />
         </div>
       ) : (
-        <div id="sign-up-or-in">
-          {!isGuest ? (
-            <React.Fragment>
-              <div className="top-row-msg-hidden">
-                {"To sign up, all we need is an email and password."}
-              </div>
-              <LogIn />
-              <div className="bottom-row-login">
-                {/* NavLink to `/auth/google` didn't work */}
-                <a href="/auth/google">{"Or sign in with Google."}</a>
-                <div
-                  className="bottom-row-msg"
-                  onClick={() => toggleIsGuest(!isGuest)}
-                >
-                  {"Need an account?"}
-                </div>
-              </div>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <div className="top-row-msg">
-                {"To sign up, all we need is an email and password."}
-              </div>
-              <SignUp />
-              <div className="bottom-row-login">
-                <a href="/auth/google">{"Or sign up with Google."}</a>
-                <div
-                  className="bottom-row-msg"
-                  onClick={() => toggleIsGuest(!isGuest)}
-                >
-                  {"Already have an account?"}
-                </div>
-              </div>
-            </React.Fragment>
-          )}
-        </div>
+        <Popup
+          trigger={
+            <Button
+              color="purple"
+              content="Login/Signup"
+              className="less-opacity"
+            />
+          }
+          content={() => <LoginOrSignup />}
+          on={["click", "focus"]}
+          basic
+          open={isOpen}
+          onClose={handlePopup}
+          onOpen={handlePopup}
+          position="bottom right"
+          style={popupStyle}
+        />
       )}
     </nav>
   );

@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { auth } from '../store';
-import { Form, Button } from 'semantic-ui-react';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { auth } from "../store";
+import { Form, Button } from "semantic-ui-react";
 
 /**
  * COMPONENT
@@ -20,9 +20,9 @@ const AuthForm = props => {
           <input name="password" type="password" placeholder="Password" />
         </div>
         <div id="submit-or-toggle">
-          <button id="auth-form-btn" type="submit">
+          <Button id="auth-form-btn" type="submit">
             {submitType}
-          </button>
+          </Button>
         </div>
       </form>
       {error &&
@@ -40,16 +40,16 @@ const AuthForm = props => {
  */
 const mapLogIn = state => {
   return {
-    name: 'signin',
-    submitType: 'Sign in',
+    name: "signin",
+    submitType: "Sign in",
     error: state.user.error,
   };
 };
 
 const mapSignUp = state => {
   return {
-    name: 'signup',
-    submitType: 'Sign up',
+    name: "signup",
+    submitType: "Sign up",
     error: state.user.error,
   };
 };
