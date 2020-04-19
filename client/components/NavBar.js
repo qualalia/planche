@@ -76,7 +76,7 @@ export default withRouter(connect(mapState)(Navbar));
  * PROP TYPES
  */
 Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  //  handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   history: PropTypes.object,
 };
