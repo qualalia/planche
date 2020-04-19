@@ -9,8 +9,9 @@ import { Popup, Button } from "semantic-ui-react";
 const popupStyle = {
   display: "flex",
   flexDirection: "column",
-  backgroundColor: "rgba(255,255,255,0.4)",
-  boxShadow: "0px 2px 2px 2px rgba(248, 181, 152, 0.6)",
+  //  backgroundColor: "rgba(253, 241, 211, 1)",
+  //  backgroundColor: "rgba(81, 106, 186, 1)",
+  boxShadow: "0px 2px 2px 2px rgba(255, 245, 175, 0.7)",
 };
 
 const Navbar = ({ isLoggedIn, history, handleClick }) => {
@@ -21,7 +22,7 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
   return (
     <nav id="navbar">
       <div id="title" onClick={() => history.push("/")}>
-        Salto!
+        S A L T O
       </div>
       {isLoggedIn ? (
         <div id="logged-in-links">
