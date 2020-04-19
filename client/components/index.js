@@ -6,8 +6,8 @@
 export { default as Navbar } from "./NavBar.js";
 export { default as UserHome } from "./UserHome.js";
 export { LogIn, SignUp } from "./AuthForm.js";
-export { LoginOrSignup, LogInOrSignUpBtn } from "./LoginOrSignup.js";
+export { LoginOrSignup } from "./LoginOrSignup.js";
 export { default as Homepage } from "./Homepage.js";
-export { default as AllLessons } from "./AllLessons.js";
+export { default as AllLessonsOnGivenDay } from "./AllLessonsOnGivenDay.js";
 export { default as SingleLesson } from "./SingleLesson.js";
 export { default as DropdownList } from "./DropdownList.js";
