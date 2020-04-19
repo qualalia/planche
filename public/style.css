@@ -41,12 +41,22 @@ body {
 nav {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 3rem 2rem;
     color: rgba(248, 181, 152, 1);
     color: rgba(255, 245, 175, 1);
     //color: rgba(253, 241, 211, 1);
     background-color: rgba(81, 106, 186, 0.4);
+}
+
+#nav-left-side {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+.option {
+    padding: 0 1rem;
 }
 
 #title {
@@ -204,10 +214,14 @@ color: rgba(81, 106, 186, 1);
 
 #display-classes {
     margin: 1rem 10rem;
-//    background-color: rgba(255, 245, 175, 1);
-border-radius: 10px;
-display: flex;
-//overflow: auto;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.day-container {
+    margin: 0 3rem;
 }
 
 .days-classes {
@@ -218,12 +232,13 @@ display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    padding: 2rem;
+//    padding: 2rem;
 //    box-shadow: 0px 2px 1px 5px rgba(248, 181, 152, 1);
 }
 
 .day-of-the-week {
     text-align: center;
+    padding: 2rem;
 }
 
 /* ---------------- */
@@ -244,7 +259,7 @@ justify-content: flex-end;
 
 .lesson-row {
     background-color:  rgba(255, 245, 175, 1); //rgba(253, 241, 211, 1);
-    margin: 1rem 0;
+    margin: 1rem 1rem;
     display: flex;
 //    box-shadow: 0px 0px 2px 2px rgba(255, 245, 175, 1);// rgba(165, 141, 191, 0.4);//rgba(41, 86, 167, 0.4);//rgba(248, 181, 152, 1);
 //    box-shadow: 0px 2px 2px 2px rgba(248, 181, 152, 0.6);
@@ -267,4 +282,19 @@ background: linear-gradient(220deg, rgba(128, 0, 128, 0.5),rgba(128, 0, 128, 0.9
 }
 
 .coach-and-studio {
+}
+
+
+/* ---------------- */
+/*    USER HOME     */
+/* ---------------- */
+
+.profile {
+    margin: 0 auto;
+    padding: 3rem 3rem;
+}
+
+.instructor-info {
+    display: flex;
+    justify-content: space-around;
 }
