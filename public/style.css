@@ -6,18 +6,36 @@
 // rgba(165, 141, 191, 1) // cloudy purple
 // rgba(81, 106, 186, 1) // foggy blue
 // rgba(41, 86, 167, 1) // night blue
+
+rgba(248, 142, 114, 1) // more orange
 */
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
 
 body {
     font-family: sans-serif;
-    background: linear-gradient(rgba(255, 217, 142, 0.7),rgba(255, 245, 175, 0.7) );
-    background: linear-gradient(220deg, rgba(255, 245, 175, 0.7), rgba(255, 245, 175, 0) 70.71%),
+//    background: linear-gradient(rgba(255, 217, 142, 0.7),rgba(255, 245, 175, 0.7) );
+    background: linear-gradient(170deg, rgba(165, 141, 191, 1), rgba(81, 106, 186, 0.1) 70.71%),
+            linear-gradient(45deg,		    rgba(41, 86, 167, 1), rgba(41, 86, 167, 0.3) 70.71%),
+            linear-gradient(271deg, rgba(81, 106, 186, 0.7),rgba(81, 106, 186, 0) 90.71%);
+    min-height: 100%;
+    overflow: hidden;
+
+/*background: linear-gradient(220deg, rgba(255, 245, 175, 0.7), rgba(255, 245, 175, 0) 70.71%),
             linear-gradient(330deg, rgba(248, 181, 152, 0.7), rgba(248, 181, 152, 0) 70.71%),
             linear-gradient(127deg, rgba(255, 217, 142, 0.7), rgba(255, 217, 142, 0) 70.71%);
+//	    linear-gradient(100deg, rgba(248, 181, 152, 0.3), rgba(248, 181, 152, 0) 70.71%);
+*/
 }
 
 .less-opacity {
-    opacity: 0.6;
+//    opacity: 0.6;
 }
 
 nav {
@@ -25,16 +43,21 @@ nav {
     align-items: center;
     justify-content: flex-end;
     padding: 3rem 2rem;
-//    background-color: rgba(255, 245, 175, 0.7);//rgba(41, 86, 167, 0.8);//rgba(248, 181, 152, 1);
-    color: rgba(248, 181, 152, 1);//rgba(255, 245, 175, 0.7);
+    color: rgba(248, 181, 152, 1);
+    color: rgba(255, 245, 175, 1);
+    //color: rgba(253, 241, 211, 1);
+    background-color: rgba(81, 106, 186, 0.4);
 }
 
 #title {
     font-size: 5rem;
     cursor: pointer;
     position: absolute;
-    left: calc(50% - 5rem);
-    font-weight: bold;
+    left: calc(50% - 15rem);
+    width: 30rem;
+//    font-weight: bold;
+    text-align: center;
+    text-shadow: 0px 4px 0px rgba(255, 217, 142, 1);
 }
 
 #logged-in-links {
@@ -47,9 +70,8 @@ nav {
 }
 
 .logged-in {
-    background-color: rgba(81, 106, 186, 0.7); //rgba(248, 181, 152, 0.7);// rgba(255, 68, 16, 0.7);
-    color: rgba(255, 245, 175, 0.7); //rgba(248, 181, 152, 1); #fde27f;
-    //color: #fffdd0;
+    background-color: rgba(81, 106, 186, 0.7);
+    color: rgba(255, 245, 175, 0.7);
     text-align: center;
     border: none;
     padding: 0.5rem;
@@ -59,8 +81,12 @@ nav {
 }
 
 .logged-in:hover {
-    background-color: rgba(81, 106, 186, 1);//rgba(248, 181, 152, 1);
+    background-color: rgba(81, 106, 186, 1);
 }
+
+/* -------------------- */
+/*   LOG IN & SIGN UP   */
+/* -------------------- */
 
 #sign-up-or-in {
     display: flex;
@@ -90,20 +116,22 @@ nav {
 }
 
 input {
-//       background-color: #478476;
-background-color: white;
-    border: none;
+//    background-color: purple; // rgba(248, 181, 152, 0.7);//white;
+border: 1px solid rgba(81, 106, 186, 0.2);
+border-radius: 5px;
     padding: 0.5rem 1rem;
     margin: 0.7rem 0.5rem;
-    color: black;
-//    color: rgba(248, 181, 152, 0.7);
+//    color: black;
+color: rgba(248, 181, 152, 1);
+color: rgba(81, 106, 186, 1);
 //    color: #fde27f
 }
 
 ::placeholder {
     color: rgba(248, 181, 152, 1);
-    color: black;
-    opacity: 0.5;
+    color: rgba(81, 106, 186, 1);
+//    color: black;
+    opacity: 0.7;
 }
 
 #auth-form-btn {
@@ -139,23 +167,9 @@ background-color: white;
     padding: 0.2rem 0.2rem;
 }
 
-.bottom-row-msg {
-    background-color: rgba(255, 68, 16, 0.5);
-    //color: #fde27f;
-    color: #fffdd0;
-    text-align: center;
-    padding: 0.4rem;
-    margin-left: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: smaller;
-}
-
-.bottom-row-msg:hover {
-    background-color: rgba(255, 68, 16, 0.8);
-}
+/* -------------*/
+/*   HOMEPAGE   */
+/* ------------ */
 
 #homepage {
     display: flex;
@@ -188,15 +202,32 @@ background-color: white;
 /*   DISPLAY CLASSES   */
 /* ------------------- */
 
-.display-classes {
+#display-classes {
+    margin: 1rem 10rem;
+//    background-color: rgba(255, 245, 175, 1);
+border-radius: 10px;
+display: flex;
+//overflow: auto;
+}
+
+.days-classes {
+    max-height: 70vh;
+    overflow-y: scroll;
+    margin: 2rem 0;
     display: flex;
-    margin: 2rem 20rem;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    padding: 2rem;
+//    box-shadow: 0px 2px 1px 5px rgba(248, 181, 152, 1);
+}
+
+.day-of-the-week {
+    text-align: center;
 }
 
 /* ---------------- */
-/*   LESSON ROW   */
+/*   LESSON ROW     */
 /* ---------------- */
 
 
@@ -206,22 +237,28 @@ background-color: white;
     display: flex;
 //    box-shadow: 0px 2px 2px 2px rgba(248, 181, 152, 0.6);
 border-radius: 10px;
+display: flex;
+justify-content: flex-end;
 
 }
 
 .lesson-row {
-    background-color:#fdf1d3;
-    margin: 2rem;
+    background-color:  rgba(255, 245, 175, 1); //rgba(253, 241, 211, 1);
+    margin: 1rem 0;
     display: flex;
-    box-shadow: 0px 2px 2px 2px rgba(248, 181, 152, 0.6);
-    border-radius: 10px;
+//    box-shadow: 0px 0px 2px 2px rgba(255, 245, 175, 1);// rgba(165, 141, 191, 0.4);//rgba(41, 86, 167, 0.4);//rgba(248, 181, 152, 1);
+//    box-shadow: 0px 2px 2px 2px rgba(248, 181, 152, 0.6);
+border-radius: 10px;
+background-color: rgba(128, 0, 128, 0.5); //rgba(41, 86, 167, 0.9);
 }
 
 .lesson-row:hover {
     cursor: pointer;
-    background-color: rgba(248, 181, 152, 0.4);
-    box-shadow: none;
-    
+    color: rgba(255, 217, 142, 1);
+    background-color: ;// rgba(248, 181, 152, 0.4);
+box-shadow: none;
+box-shadow: 0px 0px 1px 1px rgba(255, 245, 175, 1);//rgba(165, 141, 191, 0.4);//rgba(41, 86, 167, 0.4);//rgba(248, 181, 152, 1);
+background: linear-gradient(220deg, rgba(128, 0, 128, 0.5),rgba(128, 0, 128, 0.9) 75%);
 }
 
 .lesson-time-info {
