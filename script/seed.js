@@ -70,6 +70,33 @@ async function seed() {
       startTime: new Date("April 18, 2020 18:00:00"),
       endTime: new Date("April 18, 2020 19:15:00"),
     }),
+    CircusClass.create({
+      title: "Advanced Beginning Silks",
+      description:
+        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
+      cap: 8,
+      instructorId: aerialista.id,
+      startTime: new Date("April 20, 2020 19:00:00"),
+      endTime: new Date("April 20, 2020 20:30:00"),
+    }),
+    CircusClass.create({
+      title: "Advanced Beginning Silks",
+      description:
+        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
+      cap: 8,
+      instructorId: aerialista.id,
+      startTime: new Date("April 19, 2020 9:00:00"),
+      endTime: new Date("April 19, 2020 10:00:00"),
+    }),
+    CircusClass.create({
+      title: "Advanced Beginning Silks",
+      description:
+        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
+      cap: 8,
+      instructorId: aerialista.id,
+      startTime: new Date("April 19, 2020 14:30:00"),
+      endTime: new Date("April 19, 2020 15:30:00"),
+    }),
   ]);
   console.log(`seeded ${circusClasses.length} classes`);
 

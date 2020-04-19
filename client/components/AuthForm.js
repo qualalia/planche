@@ -20,7 +20,7 @@ const AuthForm = props => {
           <input name="password" type="password" placeholder="Password" />
         </div>
         <div id="submit-or-toggle">
-          <Button id="auth-form-btn" type="submit">
+          <Button color="purple" type="submit">
             {submitType}
           </Button>
         </div>
