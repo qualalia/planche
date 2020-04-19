@@ -5,7 +5,6 @@ import { LogIn, SignUp } from "../components";
 export const LoginOrSignup = () => {
   const [isGuest, toggleIsGuest] = useState(false);
   const handleToggleGuest = () => {
-    console.log("in handler");
     toggleIsGuest(!isGuest);
   };
 
@@ -15,7 +14,7 @@ export const LoginOrSignup = () => {
       <div className="bottom-row-login">
         <div className="bottom-msg">
           <div id="sign-up-msg-hidden">
-            {"To sign up, all we need is an email and password."}
+            {"To sign up, just enter email and password."}
           </div>
         </div>
         <div className="google-and-toggle-btn">
@@ -50,17 +49,5 @@ export const LoginOrSignup = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-export const LogInOrSignUpBtn = ({ open }) => {
-  return (
-    <Button
-      onClick={() => {
-        open;
-      }}
-    >
-      Log In or Sign Up
-    </Button>
   );
 };
