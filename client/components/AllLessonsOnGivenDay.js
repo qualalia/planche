@@ -10,7 +10,7 @@ const AllLessonsOnGivenDay = props => {
   const allLessons = useSelector(state => state.allLessons) || [];
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const { date } = props;
+  const { day } = props.date;
   useEffect(
     () => {
       dispatch(fetchLessons()); // todo: FOR THIS DAY
@@ -27,9 +27,9 @@ const AllLessonsOnGivenDay = props => {
         <div>
           <div className="day-of-the-week">
             <Header as="h1" inverted className="day-of-the-week">
-              {todayDay(date)}
+              {todayDay(day)}
               {", "}
-              {todayDate(date)}
+              {todayDate(day)}
             </Header>
           </div>
           <Grid className="days-classes" columns="equal">

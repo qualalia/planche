@@ -20,10 +20,14 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             <Route exact path="/profile" render={() => <UserHome />} />
-            <Route path="/" render={() => <Homepage />} />
+            <Route
+              path="/"
+              render={routeProps => <Homepage {...routeProps} />}
+            />
+            <Route path="*" render={() => <h2>Not found</h2>} />
           </Switch>
         )}
-        <Route exact path="/" render={() => <Homepage />} />
+        <Route path="/" render={routeProps => <Homepage {...routeProps} />} />
         <Route path="*" render={() => <h2>Not found</h2>} />
       </Switch>
     );

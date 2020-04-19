@@ -1,9 +1,15 @@
 import React from "react";
 import { AllLessonsOnGivenDay, DropdownList } from "../components";
-import { daysOfTheWeek } from "../script/CONSTANTS.js";
+import { daysOfTheWeek, defaultDay } from "../script";
 import { Button } from "semantic-ui-react";
+import queryString from "query-string";
 
-const Homepage = () => {
+const Homepage = props => {
+  const searchQuery = props.location.search;
+  const day = searchQuery
+    ? queryString.parse(props.location.search)
+    : defaultDay();
+  console.log(day);
   // TODO: default first three days to today, tomorrow, next day
   // TODO: paginate by day
   // TODO: different time frames: today, 3-day, week, custom?
@@ -15,7 +21,7 @@ const Homepage = () => {
   // TODO: research scrolling loading?
   return (
     <div id="homepage">
-      <div id="filters">
+      {/*      <div id="filters">
         <div id="filters-label">Filter by:</div>
         <div className="filter-container">
           <div className="filter-label">Day</div>
@@ -25,12 +31,12 @@ const Homepage = () => {
             defaultValue={new Date().getDay()}
           />
         </div>
-      </div>
+      </div>*/}
       <div id="display-classes">
         <div>
           <Button content="Prev" />
         </div>
-        <AllLessonsOnGivenDay date={threeDays[0].date} />
+        <AllLessonsOnGivenDay date={day} />
         <div>
           <Button content="Next" />
         </div>
