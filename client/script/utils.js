@@ -10,11 +10,9 @@ export const todayDate = date => {
 };
 
 export const defaultDay = () => {
-  return {
-    day: new Date().toLocaleString(undefined, {
-      month: "numeric",
-      day: "numeric",
-      year: "numeric",
-    }),
-  };
+  return new Date().toLocaleString(undefined, {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+  });
 };
