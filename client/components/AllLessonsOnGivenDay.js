@@ -20,16 +20,18 @@ const AllLessonsOnGivenDay = props => {
   );
 
   return (
-    <div>
+    <div className="day-container">
       {allLessons.error && <h2>Error: {allLessons.error}</h2>}
       {loading && <h2>Loading...</h2>}
       {allLessons.length && (
         <div>
-          <Header as="h1" inverted className="day-of-the-week">
-            {todayDay(date)}
-            {", "}
-            {todayDate(date)}
-          </Header>
+          <div className="day-of-the-week">
+            <Header as="h1" inverted className="day-of-the-week">
+              {todayDay(date)}
+              {", "}
+              {todayDate(date)}
+            </Header>
+          </div>
           <Grid className="days-classes" columns="equal">
             {allLessons.map(lesson => (
               <SingleLesson key={`lesson${lesson.id}`} lesson={lesson} />
