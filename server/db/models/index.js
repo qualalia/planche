@@ -4,15 +4,20 @@ const LessonEvent = require("./lessonEvent.js");
 const Lesson = require("./lesson.js");
 
 // Students n:m with Lesson
-Lesson.belongsToMany(User, { through: "StudentLesson" });
-User.belongsToMany(Lesson, { through: "StudentLesson" });
+Lesson.belongsToMany(User, { through: "LessonStudent" });
+User.belongsToMany(Lesson, { through: "LessonStudent" });
 
 // Instructor
 CircusClass.belongsTo(User, { as: "instructor" });
 
-// Lessons
+// Lessons & CircusClass
 CircusClass.hasMany(Lesson);
+Lesson.belongsTo(CircusClass);
+
 Lesson.hasMany(LessonEvent);
+LessonEvent.belongsTo(Lesson);
+
+Lesson.belongsTo(User, { as: "instructor" });
 
 // Lesson Events
 LessonEvent.belongsTo(User);
