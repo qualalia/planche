@@ -11,3 +11,5 @@ export { default as Homepage } from "./Homepage.js";
 export { default as AllLessonsOnGivenDay } from "./AllLessonsOnGivenDay.js";
 export { default as SingleLesson } from "./SingleLesson.js";
 export { default as DropdownList } from "./DropdownList.js";
+export { default as ProfileMenu } from "./ProfileMenu.js";
+export { default as InstructorInfo } from "./InstructorInfo.js";
