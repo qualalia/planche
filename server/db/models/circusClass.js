@@ -20,4 +20,10 @@ const CircusClass = db.define("circusClass", {
   },
 });
 
+const setCompany = cc => {
+  if (!cc.company) cc.company = "n/a";
+};
+
+CircusClass.beforeCreate(setCompany);
+
 module.exports = CircusClass;
