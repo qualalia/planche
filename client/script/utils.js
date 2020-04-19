@@ -1,7 +1,20 @@
 export const todayDay = date => {
-  return date.toLocaleString(undefined, { weekday: "long" });
+  return new Date(date).toLocaleString(undefined, { weekday: "long" });
 };
 
 export const todayDate = date => {
-  return date.toLocaleString(undefined, { month: "long", day: "numeric" });
+  return new Date(date).toLocaleString(undefined, {
+    month: "long",
+    day: "numeric",
+  });
+};
+
+export const defaultDay = () => {
+  return {
+    day: new Date().toLocaleString(undefined, {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+    }),
+  };
 };
