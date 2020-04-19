@@ -6,16 +6,9 @@ import {
 } from "../script/CONSTANTS.js";
 
 const SingleLesson = props => {
-  const {
-    title,
-    description,
-    cap,
-    startTime,
-    endTime,
-    instructor,
-  } = props.lesson;
+  const { circusClass, cap, startTime, endTime } = props.lesson;
+  const { description, title, instructor, company } = circusClass;
   const instructorName = instructor.displayName;
-  const studio = "Studio Name";
   return (
     <Grid.Row columns={3} className="lesson-row">
       {/* Time Info */}
@@ -25,7 +18,7 @@ const SingleLesson = props => {
             <Item>
               <Item.Content verticalAlign="middle">
                 <Item.Header>
-                  <Header inverted as="h3" textAlign="center">
+                  <Header inverted as="h3" textAlign="left">
                     {new Date(startTime).toLocaleString(
                       undefined,
                       hourAndMinuteOptions
@@ -42,7 +35,7 @@ const SingleLesson = props => {
             <Item>
               <Item.Content verticalAlign="middle">
                 <Item.Header>
-                  <Header inverted as="h3" textAlign="center">
+                  <Header inverted as="h3" textAlign="left">
                     {(new Date(endTime) - new Date(startTime)) / (1000 * 60)}
                     {" mins"}
                   </Header>
@@ -56,7 +49,7 @@ const SingleLesson = props => {
       {/*  */}
       {/* Lesson Info */}
       {/*  */}
-      <Grid.Column width={10}>
+      <Grid.Column width={8}>
         <Item.Group relaxed>
           <Item>
             <Item.Content verticalAlign="middle">
@@ -89,15 +82,17 @@ const SingleLesson = props => {
               </Item.Header>
             </Item.Content>
           </Item>
-          <Item>
-            <Item.Content verticalAlign="middle">
-              <Item.Header>
-                <Header inverted textAlign="left" as="h3">
-                  {studio}
-                </Header>
-              </Item.Header>
-            </Item.Content>
-          </Item>
+          {company !== "n/a" && (
+            <Item>
+              <Item.Content verticalAlign="middle">
+                <Item.Header>
+                  <Header inverted textAlign="left" as="h3">
+                    {company}
+                  </Header>
+                </Item.Header>
+              </Item.Content>
+            </Item>
+          )}
         </Item.Group>
       </Grid.Column>
     </Grid.Row>

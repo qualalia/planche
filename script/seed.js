@@ -2,6 +2,7 @@
 
 const db = require("../server/db");
 const { User, CircusClass } = require("../server/db/models");
+const makeLessons = require("./makeLessons.js");
 
 async function seed() {
   await db.sync({ force: true });
@@ -49,60 +50,24 @@ async function seed() {
       title: "Advanced Beginning Silks",
       description:
         "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
-      cap: 8,
       instructorId: aerialista.id,
-      startTime: new Date("April 18, 2020 9:00:00"),
-      endTime: new Date("April 18, 2020 10:00:00"),
     }),
     CircusClass.create({
       title: "Upper Back Flexibility",
       description: "Get rid of that quarantine hunchback.",
-      cap: 10,
       instructorId: masterTrainer.id,
-      startTime: new Date("April 18, 2020 14:00:00"),
-      endTime: new Date("April 18, 2020 14:45:00"),
+      company: "NECCA",
     }),
     CircusClass.create({
       title: "Handstands",
       description: "for a better profile pic",
-      cap: 7,
       instructorId: masterTrainer.id,
-      startTime: new Date("April 18, 2020 18:00:00"),
-      endTime: new Date("April 18, 2020 19:15:00"),
-    }),
-    CircusClass.create({
-      title: "Advanced Beginning Silks",
-      description:
-        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
-      cap: 8,
-      instructorId: aerialista.id,
-      startTime: new Date("April 20, 2020 19:00:00"),
-      endTime: new Date("April 20, 2020 20:30:00"),
-    }),
-    CircusClass.create({
-      title: "Advanced Beginning Silks",
-      description:
-        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
-      cap: 8,
-      instructorId: aerialista.id,
-      startTime: new Date("April 19, 2020 9:00:00"),
-      endTime: new Date("April 19, 2020 10:00:00"),
-    }),
-    CircusClass.create({
-      title: "Advanced Beginning Silks",
-      description:
-        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
-      cap: 8,
-      instructorId: aerialista.id,
-      startTime: new Date("April 19, 2020 14:30:00"),
-      endTime: new Date("April 19, 2020 15:30:00"),
+      company: "Kinetic Arts Center",
     }),
   ]);
   console.log(`seeded ${circusClasses.length} classes`);
 
-  const handstandsClass = circusClasses.find(cc => cc.title === "Handstands");
-
-  await handstandsClass.setUsers(students);
+  const lessons = await makeLessons(circusClasses);
 
   console.log(`seeded successfully`);
 }

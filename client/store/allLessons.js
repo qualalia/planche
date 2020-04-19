@@ -20,7 +20,7 @@ const allLessonsError = error => ({
 export function fetchLessons() {
   return async dispatch => {
     try {
-      const { data } = await axios.get(`/api/classes`);
+      const { data } = await axios.get(`/api/lessons`);
       dispatch(getAllLessons(data));
     } catch (err) {
       console.log(err);
