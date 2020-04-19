@@ -1,6 +1,7 @@
 import React from "react";
 import { AllLessonsOnGivenDay, DropdownList } from "../components";
 import { daysOfTheWeek } from "../script/CONSTANTS.js";
+import { Button } from "semantic-ui-react";
 
 const Homepage = () => {
   // TODO: default first three days to today, tomorrow, next day
@@ -11,7 +12,7 @@ const Homepage = () => {
     { id: 1, date: new Date("April 19, 2020") },
     { id: 2, date: new Date("April 20, 2020") },
   ];
-  // TODO: research scrolling loading
+  // TODO: research scrolling loading?
   return (
     <div id="homepage">
       <div id="filters">
@@ -26,9 +27,13 @@ const Homepage = () => {
         </div>
       </div>
       <div id="display-classes">
-        <div>Previous</div>
+        <div>
+          <Button content="Prev" />
+        </div>
         <AllLessonsOnGivenDay date={threeDays[0].date} />
-        <div>Next</div>
+        <div>
+          <Button content="Next" />
+        </div>
       </div>
     </div>
   );
