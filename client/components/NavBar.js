@@ -21,6 +21,11 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
   };
   return (
     <nav id="navbar">
+      <div id="nav-left-side">
+        <div className="nav option">Browse</div>
+        <div className="nav option">Other Option</div>
+        <div className="nav option">Third Option</div>
+      </div>
       <div id="title" onClick={() => history.push("/")}>
         S A L T O
       </div>
@@ -31,12 +36,6 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
             className="less-opacity"
             content="Profile"
             onClick={() => history.push("/profile")}
-          />
-          <Button
-            color="purple"
-            className="less-opacity"
-            content="Log Out"
-            onClick={handleClick}
           />
         </div>
       ) : (
@@ -71,15 +70,7 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
-  return {
-    handleClick() {
-      dispatch(logout());
-    },
-  };
-};
-
-export default withRouter(connect(mapState, mapDispatch)(Navbar));
+export default withRouter(connect(mapState)(Navbar));
 
 /**
  * PROP TYPES
