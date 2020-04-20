@@ -16,3 +16,17 @@ export const defaultDay = () => {
     year: "numeric",
   });
 };
+
+export const addADay = date => {
+  return new Date(new Date().setDate(date.getDate() + 1)).toLocaleString(
+    undefined,
+    { month: "numeric", day: "numeric", year: "numeric" }
+  );
+};
+
+export const subtractADay = date => {
+  return new Date(new Date().setDate(date.getDate() - 1)).toLocaleString(
+    undefined,
+    { month: "numeric", day: "numeric", year: "numeric" }
+  );
+};
