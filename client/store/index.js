@@ -4,14 +4,14 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import user from "./user";
 import singleClass from "./singleClass.js";
-import allLessons from "./allLessons.js";
+import lessons from "./allLessons.js";
 import instructors from "./instructors.js";
 import schools from "./schools";
 
 const reducer = combineReducers({
   user,
   singleClass,
-  allLessons,
+  lessons,
   instructors,
   schools,
 });
