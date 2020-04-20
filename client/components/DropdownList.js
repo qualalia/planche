@@ -12,13 +12,8 @@ const DropdownList = ({ list, listName, defaultValue }) => {
   return (
     <Dropdown
       name={listName}
-      placeholder={
-        list.length ? (
-          `Select or Search`
-        ) : (
-          <Loader active size="tiny" inline="centered" />
-        )
-      }
+      placeholder={`Select or Search`}
+      loading={list.length <= 0}
       options={options}
       selection
       multiple
