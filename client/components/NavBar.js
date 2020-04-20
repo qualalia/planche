@@ -18,18 +18,7 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
   };
   return (
     <nav id="navbar">
-      <div id="nav-left-side">
-        <Button
-          onClick={() => history.push("/add-class")}
-          content={
-            <div>
-              <i className="plus icon" />
-              {"New Class"}
-            </div>
-          }
-          color="purple"
-        />
-      </div>
+      <div id="nav-left-side" />
       <div id="title" onClick={() => history.push("/")}>
         S A L T O
       </div>
