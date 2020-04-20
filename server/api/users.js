@@ -5,10 +5,23 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: ["id", "email", "displayName", "userType", "bio"],
-    });
-    res.json(users);
+    console.log(req.query);
+    const whereClause = {};
+    if (req.query) {
+      if (req.query.type) {
+        whereClause.userType = parseInt(req.query.type);
+      }
+      const instructors = await User.findAll({
+        where: whereClause,
+        attributes: ["id", "displayName"],
+      });
+      res.json(instructors);
+    } else {
+      const users = await User.findAll({
+        attributes: ["id", "email", "displayName", "userType", "bio"],
+      });
+      res.json(users);
+    }
   } catch (err) {
     next(err);
   }
