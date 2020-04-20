@@ -1,30 +1,29 @@
 import axios from "axios";
-import history from "../history";
 
-const GET_ALL_LESSONS = "GET_ALL_LESSONS";
-export const ALL_LESSONS_ERROR = "ALL_LESSONS_ERROR";
+const SET_LESSONS = "SET_LESSONS";
+export const SET_LESSONS_ERROR = "SET_LESSONS_ERROR";
 
-const getAllLessons = allLessons => ({
-  type: GET_ALL_LESSONS,
-  allLessons,
+const setLessons = lessons => ({
+  type: SET_LESSONS,
+  lessons,
 });
 
-const allLessonsError = error => ({
-  type: ALL_LESSONS_ERROR,
+const setLessonsError = error => ({
+  type: SET_LESSONS_ERROR,
   error,
 });
 
 /**
  * THUNK CREATORS
  */
-export function fetchLessons() {
+export function fetchLessons(query) {
   return async dispatch => {
     try {
-      const { data } = await axios.get(`/api/lessons`);
-      dispatch(getAllLessons(data));
+      const { data } = await axios.get(`/api/lessons${query}`);
+      dispatch(setLessons(data));
     } catch (err) {
       console.log(err);
-      dispatch(allLessonsError(err));
+      dispatch(setLessonsError(err));
     }
   };
 }
@@ -34,9 +33,9 @@ export function fetchLessons() {
  */
 export default function(state = {}, action) {
   switch (action.type) {
-    case GET_ALL_LESSONS:
-      return action.allLessons;
-    case ALL_LESSONS_ERROR:
+    case SET_LESSONS:
+      return action.lessons;
+    case SET_LESSONS_ERROR:
       return { ...state, error: action.error.message };
     default:
       return state;
