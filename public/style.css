@@ -55,6 +55,15 @@ nav {
     padding: 0 3rem;
 }
 
+.nav-btn {
+    box-shadow: 1px 1px 0px 0px rgba(255, 245, 175, 1) !important;
+}
+
+.inverted-btn {
+    color: rgba(0,255,0, 1) !important;
+    background-color: rgba(10,70,10,0.5) !important;
+}
+
 .option {
     padding: 0 1rem;
 }
@@ -102,21 +111,19 @@ nav {
 }
 
 input {
-//    background-color: purple; // rgba(248, 181, 152, 0.7);//white;
-border: 1px solid rgba(81, 106, 186, 0.2);
-border-radius: 5px;
+//    border: 1px solid rgba(81, 106, 186, 0.2);
+//    border: 1px solid rgba(255, 245, 175, 1);
+border: 1px dashed rgba(0,0,0,0.2);
+    border-radius: 5px;
     padding: 0.5rem 1rem;
     margin: 0.7rem 0.5rem;
-//    color: black;
-color: rgba(248, 181, 152, 1);
-color: rgba(81, 106, 186, 1);
-//    color: #fde27f
+//    color: rgba(248, 181, 152, 1);
+//    color: rgba(81, 106, 186, 1);
 }
 
 ::placeholder {
-    color: rgba(248, 181, 152, 1);
+//    color: rgba(248, 181, 152, 1);
     color: rgba(81, 106, 186, 1);
-//    color: black;
     opacity: 0.7;
 }
 
@@ -159,7 +166,14 @@ color: rgba(81, 106, 186, 1);
 
 #homepage {
     display: flex;
-    flex-direction: column-reverse;
+    //    flex-direction: column-reverse;
+    align-content: center;
+    justify-content: center;
+}
+
+#browse {
+    padding: 2rem;
+    margin: 2rem;
 }
 
 /* ------------*/
@@ -168,20 +182,20 @@ color: rgba(81, 106, 186, 1);
 
 #filters {
     display: flex;
-    padding: 0.5rem;
-}
-
-#filters-label {
-    margin: 1rem;
+    justify-content: flex-start;
+//    padding: 0.5rem;
+    margin: 0 5rem;
 }
 
 .filter-container {
-    display: flex;
-    margin: 0 auto;
+    margin: 0 1rem;
+    min-width: 10rem;
 }
 
 .filter-label {
-    margin: 1rem;
+    //    margin-right: -2rem !important;
+    position: relative !important;
+    left: -1rem !important;
 }
 
 /* --------------------*/
@@ -202,7 +216,7 @@ color: rgba(81, 106, 186, 1);
 
 .days-classes {
     max-height: 70vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 2rem 0;
     display: flex;
     align-items: center;
@@ -214,7 +228,7 @@ color: rgba(81, 106, 186, 1);
 
 .day-of-the-week {
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 /* ---------------- */
@@ -249,7 +263,8 @@ background-color: rgba(128, 0, 128, 0.5); //rgba(41, 86, 167, 0.9);
     background-color: ;// rgba(248, 181, 152, 0.4);
 box-shadow: none;
 //box-shadow: 0px 0px 1px 1px rgba(255, 245, 175, 1);//rgba(165, 141, 191, 0.4);//rgba(41, 86, 167, 0.4);//rgba(248, 181, 152, 1);
-background: linear-gradient(220deg, rgba(128, 0, 128, 0.5),rgba(128, 0, 128, 0.9) 75%);
+background: linear-gradient(302deg, rgba(41, 86, 167, 0.4), rgba(128, 0, 128, 0.7) 89%),
+	     linear-gradient(302deg,   rgba(128, 0, 128, 0.4), rgba(128, 0, 128, 0.7) 12%);
 }
 
 .lesson-time-info {
