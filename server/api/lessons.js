@@ -39,9 +39,11 @@ router.get("/", async (req, res, next) => {
       order: [["startTime", "ASC"]],
       //      limit: 2,
     });
-    if (allLessons.length) res.json(allLessons);
-    else res.status(204).json(allLessons);
-    //    res.json(allLessons);
+    if (allLessons.length) {
+      res.json(allLessons);
+    } else {
+      res.sendStatus(204);
+    }
   } catch (err) {
     next(err);
   }
