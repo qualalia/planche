@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
-import { LogIn, SignUp, UserHome, Homepage } from "./components";
+import {
+  LogIn,
+  SignUp,
+  UserHome,
+  Homepage,
+  LessonsContainer,
+  FiltersContainer,
+} from "./components";
 import { me } from "./store";
 
 /**
@@ -17,6 +24,16 @@ class Routes extends Component {
     const { isLoggedIn, history } = this.props;
     return (
       <Switch>
+        <Route
+          exact
+          path="/browse"
+          render={routeProps => (
+            <>
+              <FiltersContainer />
+              <LessonsContainer {...routeProps} />
+            </>
+          )}
+        />
         {isLoggedIn && (
           <Switch>
             <Route exact path="/profile" render={() => <UserHome />} />
