@@ -2,7 +2,7 @@
 
 const db = require("../server/db");
 const { User, CircusClass } = require("../server/db/models");
-const makeLessons = require("./makeLessons.js");
+const { makeLessons, makeCompanies, makeCircusClasses } = require("../script");
 
 async function seed() {
   await db.sync({ force: true });
@@ -30,44 +30,27 @@ async function seed() {
 
   const coaches = [];
   const students = [];
+  const companyStaff = [];
   users.forEach(user => {
-    if (user.userType > 0) coaches.push(user);
-    else students.push(user);
+    switch (user.userType) {
+      case 0:
+        students.push(user);
+      case 1:
+        coaches.push(user);
+      case 2:
+        companyStaff.push(user);
+      default:
+        students.push(user);
+    }
   });
 
-  console.log("c: ", coaches.length);
-  console.log("s: ", students.length);
+  console.log("coaches: ", coaches.length);
+  console.log("students: ", students.length);
+  console.log("company staff: ", companyStaff.length);
 
-  const aerialista = coaches.find(
-    coach => coach.displayName === "Jenny Aerialist"
-  );
-  const masterTrainer = coaches.find(
-    coach => coach.displayName === "Master Coach"
-  );
-
-  const circusClasses = await Promise.all([
-    CircusClass.create({
-      title: "Advanced Beginning Silks",
-      description:
-        "Great for those who can invert comfortably in the air and do not ask to do double stars every class.",
-      instructorId: aerialista.id,
-    }),
-    CircusClass.create({
-      title: "Upper Back Flexibility",
-      description: "Get rid of that quarantine hunchback.",
-      instructorId: masterTrainer.id,
-      company: "NECCA",
-    }),
-    CircusClass.create({
-      title: "Handstands",
-      description: "for a better profile pic",
-      instructorId: masterTrainer.id,
-      company: "Kinetic Arts Center",
-    }),
-  ]);
-  console.log(`seeded ${circusClasses.length} classes`);
-
-  const lessons = await makeLessons(circusClasses);
+  const classes = await makeCircusClasses(coaches);
+  const companies = await makeCompanies(coaches, classes);
+  const lessons = await makeLessons(classes);
 
   console.log(`seeded successfully`);
 }

@@ -54,4 +54,5 @@ module.exports = async function(circusClasses) {
     }),
   ]);
   console.log(`seeded ${lessons.length} lessons`);
+  return lessons;
 };
