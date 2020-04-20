@@ -9,9 +9,6 @@ import { Popup, Button } from "semantic-ui-react";
 const popupStyle = {
   display: "flex",
   flexDirection: "column",
-  //  backgroundColor: "rgba(253, 241, 211, 1)",
-  //  backgroundColor: "rgba(81, 106, 186, 1)",
-  boxShadow: "0px 2px 2px 2px rgba(255, 245, 175, 0.7)",
 };
 
 const Navbar = ({ isLoggedIn, history, handleClick }) => {
@@ -22,9 +19,16 @@ const Navbar = ({ isLoggedIn, history, handleClick }) => {
   return (
     <nav id="navbar">
       <div id="nav-left-side">
-        <div className="nav option">Browse</div>
-        <div className="nav option">Other Option</div>
-        <div className="nav option">Third Option</div>
+        <Button
+          onClick={() => history.push("/add-class")}
+          content={
+            <div>
+              <i className="plus icon" />
+              {"New Class"}
+            </div>
+          }
+          color="purple"
+        />
       </div>
       <div id="title" onClick={() => history.push("/")}>
         S A L T O
