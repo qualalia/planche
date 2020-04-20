@@ -38,7 +38,9 @@ router.get("/", async (req, res, next) => {
       order: [["startTime", "ASC"]],
       //      limit: 2,
     });
-    res.json(allLessons);
+    if (allLessons.length) res.json(allLessons);
+    else res.status(204).json(allLessons);
+    //    res.json(allLessons);
   } catch (err) {
     next(err);
   }
