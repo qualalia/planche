@@ -1,22 +1,15 @@
 import React from "react";
 import Select from "react-select";
+import { Dropdown } from "semantic-ui-react";
 
-const DropdownList = ({ list, listType, defaultValue, handleSelect }) => {
+const DropdownList = ({ list, listName, defaultValue }) => {
   const options = list.map(item => ({
+    key: `${listName}${item}`,
+    text: item,
     value: item,
-    label: item,
   }));
 
-  return (
-    <Select
-      defaultValue={[options[defaultValue]]}
-      isMulti
-      name={listType}
-      className="basic-multi-select"
-      options={options}
-      onInputChange={handleSelect}
-    />
-  );
+  return <Dropdown options={options} selection multiple search fluid />;
 };
 
 export default DropdownList;
