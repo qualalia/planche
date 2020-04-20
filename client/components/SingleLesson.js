@@ -7,7 +7,7 @@ import {
 
 const SingleLesson = props => {
   const { circusClass, cap, startTime, endTime } = props.lesson;
-  const { description, title, instructor, company } = circusClass;
+  const { description, title, company, instructor } = circusClass;
   const instructorName = instructor.displayName;
   return (
     <Grid.Row columns={3} className="lesson-row">
