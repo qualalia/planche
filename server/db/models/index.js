@@ -2,6 +2,7 @@ const User = require("./user");
 const CircusClass = require("./circusClass");
 const LessonEvent = require("./lessonEvent.js");
 const Lesson = require("./lesson.js");
+const Company = require("./company.js");
 
 // Students n:m with Lesson
 Lesson.belongsToMany(User, { through: "LessonStudent" });
@@ -23,9 +24,17 @@ Lesson.belongsTo(User, { as: "instructor" });
 LessonEvent.belongsTo(User);
 User.hasMany(LessonEvent);
 
+// Company n:m with User
+Company.belongsToMany(User, { through: "CompanyStaff" });
+User.belongsToMany(Company, { through: "CompanyStaff" });
+
+Company.hasMany(CircusClass);
+CircusClass.belongsTo(Company);
+
 module.exports = {
   User,
   CircusClass,
   Lesson,
   LessonEvent,
+  Company,
 };

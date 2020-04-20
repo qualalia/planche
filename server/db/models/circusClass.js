@@ -14,16 +14,6 @@ const CircusClass = db.define("circusClass", {
     allowNull: false,
     defaultValue: "",
   },
-  company: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
 });
-
-const setCompany = cc => {
-  if (!cc.company) cc.company = "n/a";
-};
-
-CircusClass.beforeCreate(setCompany);
 
 module.exports = CircusClass;
