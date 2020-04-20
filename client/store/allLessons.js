@@ -19,7 +19,7 @@ const setLessonsError = error => ({
 export function fetchLessons(query) {
   return async dispatch => {
     try {
-      const { status, data } = await axios.get(`/api/lessons${query}`);
+      const { data, status } = await axios.get(`/api/lessons${query}`);
       dispatch(setLessons({ data, status }));
     } catch (err) {
       console.log(err);
