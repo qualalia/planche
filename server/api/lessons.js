@@ -5,7 +5,21 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
+    const date = new Date(req.query.date);
+    const endOfDay = new Date(new Date().setDate(date.getDate())).setHours(
+      23,
+      59,
+      59,
+      999
+    );
+    const whereClause = {
+      startTime: {
+        [Op.gte]: new Date(req.query.date),
+        [Op.lt]: endOfDay,
+      },
+    };
     const allLessons = await Lesson.findAll({
+      where: whereClause,
       include: [
         {
           model: User,
@@ -21,7 +35,7 @@ router.get("/", async (req, res, next) => {
           },
         },
       ],
-      order: ["startTime"],
+      order: [["startTime", "ASC"]],
       //      limit: 2,
     });
     res.json(allLessons);
