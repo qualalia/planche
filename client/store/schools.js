@@ -16,8 +16,8 @@ const setSchoolsError = error => ({
 export function fetchSchools() {
   return async dispatch => {
     try {
-      const { data } = await axios.get(`/api/companies`);
-      dispatch(setSchools(data));
+      const { data, status } = await axios.get(`/api/companies`);
+      dispatch(setSchools({ data, status }));
     } catch (err) {
       console.log(err);
       dispatch(setSchoolsError(err));
