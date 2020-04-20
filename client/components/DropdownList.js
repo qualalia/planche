@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Loader, Segment } from "semantic-ui-react";
 
 const DropdownList = ({ list, listName, defaultValue }) => {
   const options = list.map(item => ({
@@ -9,7 +9,23 @@ const DropdownList = ({ list, listName, defaultValue }) => {
     value: item,
   }));
 
-  return <Dropdown options={options} selection multiple search fluid />;
+  return (
+    <Dropdown
+      name={listName}
+      placeholder={
+        list.length ? (
+          `Select or Search`
+        ) : (
+          <Loader active size="tiny" inline="centered" />
+        )
+      }
+      options={options}
+      selection
+      multiple
+      search
+      fluid
+    />
+  );
 };
 
 export default DropdownList;
