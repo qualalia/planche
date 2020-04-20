@@ -3,37 +3,22 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { fetchLessons } from "../store";
 import { SingleLesson } from "../components";
 import { todayDay, todayDate } from "../script";
-import { Grid, Label, Header } from "semantic-ui-react";
+import { Grid, Label, Header, Button } from "semantic-ui-react";
 import queryString from "query-string";
 
-console.log("local storage outside of all lessons: ", localStorage);
-
+/* TODO: only fetch lessons if they aren't already in the store */
 const AllLessons = props => {
   const lessons = useSelector(state => state.lessons.data);
   const status = useSelector(state => state.lessons.status);
   const [loading, setLoading] = useState(true);
-  const [noLessons, setNoLessons] = useState(false);
   const dispatch = useDispatch();
   const { date } = props;
   const parsed = queryString.parse(location.search);
+
   useEffect(
     () => {
-      if (localStorage.getItem(location.search)) {
-        console.log(
-          "already has that query: ",
-          localStorage.getItem(location.search)
-        );
-      } else {
-        (async () => {
-          await dispatch(fetchLessons(location.search));
-          console.log(lessons);
-          await localStorage.setItem(location.search, JSON.stringify(lessons));
-        })();
-        console.log("new query: ", localStorage.getItem(location.search));
-      }
-
+      dispatch(fetchLessons(location.search));
       if (status) setLoading(false);
-      if (status === 204) setNoLessons(true);
     },
     [lessons.length]
   );
@@ -49,15 +34,38 @@ const AllLessons = props => {
           </Header>
         </div>
         {lessons.error && <h2>Error: {lessons.error}</h2>}
+        {status === 204 && (
+          <div>
+            <Header as="h1" inverted content="No classes scheduled yet." />
+            <div className="add-new">
+              <Header
+                as="h3"
+                inverted
+                content="If you are an instructor or company: "
+              />
+              <Button
+                onClick={() => history.push("/add-class")}
+                content={
+                  <div>
+                    <i className="plus icon" />
+                    {"Add New Class"}
+                  </div>
+                }
+                color="purple"
+              />
+              <Header
+                inverted
+                as="h3"
+                content="Soon, you will be able to request a class. Stay tuned!"
+              />
+            </div>
+          </div>
+        )}
         {lessons && (
           <Grid className="days-classes" columns="equal">
-            {!noLessons ? (
-              lessons.map(lesson => (
-                <SingleLesson key={`lesson${lesson.id}`} lesson={lesson} />
-              ))
-            ) : (
-              <Header as="h1" inverted content="No classes scheduled yet." />
-            )}
+            {lessons.map(lesson => (
+              <SingleLesson key={`lesson${lesson.id}`} lesson={lesson} />
+            ))}
           </Grid>
         )}
       </div>
