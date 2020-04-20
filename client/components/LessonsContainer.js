@@ -26,17 +26,13 @@ const LessonsContainer = props => {
   const handleClickPrev = evt => {
     if (evt.target.name === "prev") {
       const yesterday = subtractADay(new Date(date));
-      //      location.search = queryString.stringify({ date: yesterday });
-      //      date = queryString.stringify({ date: yesterday });
       location.search = queryString.stringify({ date: yesterday });
-      setLoading(true);
     }
   };
   const handleClickNext = evt => {
     if (evt.target.name === "next") {
       const tomorrow = addADay(new Date(date));
       location.search = queryString.stringify({ date: tomorrow });
-      setLoading(true);
     }
   };
 
