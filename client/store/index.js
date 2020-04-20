@@ -5,11 +5,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import user from "./user";
 import singleClass from "./singleClass.js";
 import allLessons from "./allLessons.js";
+import instructors from "./instructors.js";
+import schools from "./schools";
 
 const reducer = combineReducers({
   user,
   singleClass,
   allLessons,
+  instructors,
+  schools,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
@@ -20,3 +24,5 @@ export default store;
 export * from "./user";
 export * from "./singleClass.js";
 export * from "./allLessons.js";
+export * from "./instructors.js";
+export * from "./schools.js";
