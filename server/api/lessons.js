@@ -1,46 +1,22 @@
 const router = require("express").Router();
-const { Lesson, CircusClass, User } = require("../db/models");
+const { Lesson, CircusClass, User, Company } = require("../db/models");
 const { Op } = require("sequelize");
+const LessonQueryBuilder = require("../script/lessonQueryBuilder.js");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const whereClause = {};
-    if (req.query.date) {
-      const date = new Date(req.query.date);
-      const endOfDay = new Date(new Date().setDate(date.getDate())).setHours(
-        23,
-        59,
-        59,
-        999
-      );
-      whereClause.startTime = {
-        [Op.gte]: new Date(req.query.date),
-        [Op.lt]: endOfDay,
-      };
-    }
-    const allLessons = await Lesson.findAll({
-      where: whereClause,
-      include: [
-        {
-          model: User,
-          as: "instructor",
-          attributes: ["id", "displayName", "userType", "bio"],
-        },
-        {
-          model: CircusClass,
-          include: {
-            model: User,
-            as: "instructor",
-            attributes: ["id", "displayName", "userType", "bio"],
-          },
-        },
-      ],
-      order: [["startTime", "ASC"]],
-      //      limit: 2,
-    });
-    if (allLessons.length) {
-      res.json(allLessons);
+    console.log(req.query);
+    const lessonQuery = new LessonQueryBuilder();
+    lessonQuery
+      .filterByStartTime(req.query.date)
+      .filterByInstructor(req.query.instructor)
+      .filterByCompany(req.query.school)
+      .orderBy(req.query.orderBy);
+    const lessons = await lessonQuery.getLessons();
+
+    if (lessons.length) {
+      res.json(lessons);
     } else {
       res.sendStatus(204);
     }
