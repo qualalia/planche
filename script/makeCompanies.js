@@ -6,7 +6,7 @@ module.exports = async function(instructors, classes) {
       name: "Kinetic Arts Center",
     }),
     Company.create({
-      name: "NECCA",
+      name: "New England Center for Circus Arts",
     }),
     Company.create({
       name: "Athletic Playground",
