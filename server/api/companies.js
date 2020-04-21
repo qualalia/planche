@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { Company, User, CircusClass } = require("../db/models");
+const { Company, User, CircusClass, Lesson } = require("../db/models");
 const { Op } = require("sequelize");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
     const companies = await Company.findAll({
-      include: [{ model: User }, { model: CircusClass }],
+      include: [{ model: User }, { model: CircusClass }, { model: Lesson }],
       order: [["name", "ASC"]],
     });
     if (companies.length) res.json(companies);
