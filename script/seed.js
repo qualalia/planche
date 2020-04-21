@@ -52,6 +52,22 @@ async function seed() {
   const companies = await makeCompanies(coaches, classes);
   const lessons = await makeLessons(classes);
 
+  const kac = companies.find(co => co.name === "Kinetic Arts Center");
+  const aloft = companies.find(co => co.name.includes("Aloft"));
+
+  const handstands = classes.find(cc => cc.title === "Handstands");
+  const advBegSilks = classes.find(cc => cc.title.includes("Advanced"));
+
+  await kac.setCircusClasses(handstands);
+  await kac.setLessons(
+    lessons.filter(lesson => lesson.circusClassId === handstands.id)
+  );
+
+  await aloft.setCircusClasses(advBegSilks);
+  await aloft.setLessons(
+    lessons.filter(lesson => lesson.circusClassId === advBegSilks.id)
+  );
+
   console.log(`seeded successfully`);
 }
 
