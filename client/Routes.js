@@ -29,7 +29,7 @@ class Routes extends Component {
           path="/browse"
           render={routeProps => (
             <>
-              <FiltersContainer />
+              <FiltersContainer {...routeProps} />
               <LessonsContainer {...routeProps} />
             </>
           )}
