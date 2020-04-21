@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AllLessons, DropdownList } from "../components";
 import { daysOfTheWeek, defaultDay, addADay, subtractADay } from "../script";
-import { Button, Header } from "semantic-ui-react";
+import { Button, Header, Loader } from "semantic-ui-react";
 import queryString from "query-string";
 
 const LessonsContainer = props => {
@@ -11,9 +11,9 @@ const LessonsContainer = props => {
     const today = defaultDay();
     const query = queryString.parse(location.search);
     query.date = today;
-    location.search = queryString.stringify(query);
+    props.history.push(`/browse?${queryString.stringify(query)}`);
   }
-  const date = queryString.parse(location.search).date;
+  let date = queryString.parse(location.search).date;
 
   useEffect(
     () => {
@@ -24,7 +24,6 @@ const LessonsContainer = props => {
   );
 
   const handleClickPrev = evt => {
-    const currentQuery = location.search;
     if (evt.target.name === "prev") {
       const yesterday = subtractADay(new Date(date));
       location.search = queryString.stringify({ date: yesterday });
@@ -39,19 +38,13 @@ const LessonsContainer = props => {
 
   return (
     <div id="display-classes">
-      {!loading ? (
-        <React.Fragment>
-          <div>
-            <Button name="prev" onClick={handleClickPrev} content="Prev" />
-          </div>
-          <AllLessons date={date} />
-          <div>
-            <Button name="next" onClick={handleClickNext} content="Next" />
-          </div>
-        </React.Fragment>
-      ) : (
-        <Header as="h1" inverted content="Loading..." />
-      )}
+      <div>
+        <Button name="prev" onClick={handleClickPrev} content={"Prev"} />
+      </div>
+      {loading ? <Loader active /> : <AllLessons date={date} />}
+      <div>
+        <Button name="next" onClick={handleClickNext} content="Next" />
+      </div>
     </div>
   );
 };

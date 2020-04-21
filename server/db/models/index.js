@@ -20,6 +20,10 @@ LessonEvent.belongsTo(Lesson);
 
 Lesson.belongsTo(User, { as: "instructor" });
 
+// Lessons & Companies
+Lesson.belongsTo(Company);
+Company.hasMany(Lesson);
+
 // Lesson Events
 LessonEvent.belongsTo(User);
 User.hasMany(LessonEvent);
@@ -28,8 +32,8 @@ User.hasMany(LessonEvent);
 Company.belongsToMany(User, { through: "CompanyStaff" });
 User.belongsToMany(Company, { through: "CompanyStaff" });
 
-Company.hasMany(CircusClass);
 CircusClass.belongsTo(Company);
+Company.hasMany(CircusClass);
 
 module.exports = {
   User,

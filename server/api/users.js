@@ -5,7 +5,6 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    console.log(req.query);
     const whereClause = {};
     if (req.query) {
       if (req.query.type) {

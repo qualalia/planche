@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-select";
 import { Dropdown, Loader, Segment } from "semantic-ui-react";
 
-const DropdownList = ({ list, listName, defaultValue }) => {
+const DropdownList = ({ list, listName, handleChoose }) => {
   const options = list.map(item => ({
     key: `${listName}${item}`,
     text: item,
@@ -12,13 +12,9 @@ const DropdownList = ({ list, listName, defaultValue }) => {
   return (
     <Dropdown
       name={listName}
-      placeholder={
-        list.length ? (
-          `Select or Search`
-        ) : (
-          <Loader active size="tiny" inline="centered" />
-        )
-      }
+      onChange={handleChoose}
+      placeholder={`Select or Search`}
+      loading={list.length <= 0}
       options={options}
       selection
       multiple
