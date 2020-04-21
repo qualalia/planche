@@ -6,8 +6,15 @@ import {
 } from "../script/CONSTANTS.js";
 
 const SingleLesson = props => {
-  const { circusClass, cap, startTime, endTime } = props.lesson;
-  const { description, title, company, instructor } = circusClass;
+  const {
+    circusClass,
+    cap,
+    startTime,
+    endTime,
+    instructor,
+    company,
+  } = props.lesson;
+  const { description, title } = circusClass;
   const instructorName = instructor.displayName;
   return (
     <Grid.Row columns={3} className="lesson-row">
