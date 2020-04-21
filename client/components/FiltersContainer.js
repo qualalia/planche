@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchInstructors, fetchSchools } from "../store";
+import { fetchInstructors, fetchSchools, fetchLessons } from "../store";
 import { DropdownList } from "../components";
 import { daysOfTheWeek } from "../script";
 import { Label, Button, Dropdown } from "semantic-ui-react";
 import queryString from "query-string";
 
-const FiltersContainer = () => {
+const FiltersContainer = props => {
   const instructors = useSelector(state => state.instructors) || [];
   const schools = useSelector(state => state.schools.data) || [];
   const dispatch = useDispatch();
@@ -29,24 +29,19 @@ const FiltersContainer = () => {
   );
 
   const handleChoose = (e, data) => {
+    console.log("before switch");
     const currentChoice = data.value;
-    console.log(data.name);
     switch (data.name) {
       case "Schools":
         setChosenSchools(currentChoice);
-        return;
       case "Instructors":
         setChosenInstructors(currentChoice);
-        return;
       case "Day":
         setChosenDays(currentChoice);
-        return;
       default:
         return;
     }
-  };
-
-  const handleSubmit = () => {
+    console.log("after switch");
     const day = chosenDays.length ? chosenDays : null;
     const instructor = chosenInstructors.length ? chosenInstructors : null;
     const school = chosenSchools.length ? chosenSchools : null;
@@ -58,7 +53,14 @@ const FiltersContainer = () => {
       },
       { skipNull: true }
     );
-    location.search = query;
+    dispatch(setQuery(query));
+    //    location.search = query;
+    //    props.history.push(`/browse?${query}`);
+    //    dispatch(fetchLessons(location.search));
+  };
+
+  const handleSubmit = () => {
+    //location.search = query;
   };
 
   return (
