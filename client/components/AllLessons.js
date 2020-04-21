@@ -20,7 +20,7 @@ const AllLessons = props => {
       dispatch(fetchLessons(location.search));
       if (status) setLoading(false);
     },
-    [lessons.length]
+    [lessons.length, location.search]
   );
 
   return (
